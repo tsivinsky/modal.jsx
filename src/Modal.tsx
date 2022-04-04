@@ -19,7 +19,7 @@ const modalStyles: React.CSSProperties = {
 
 export type ModalProps = JSX.IntrinsicElements["div"] & {
   isOpen: boolean;
-  onClickOutside: () => void;
+  onClickOutside?: () => void;
   backdropClassName?: string;
 };
 
