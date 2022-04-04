@@ -19,6 +19,7 @@ export type ModalProps = JSX.IntrinsicElements["div"] & {
   backdropClassName?: string;
   zIndex?: number;
   backdropZIndex?: number;
+  enableBodyScroll?: boolean;
 };
 
 export const Modal: React.FC<ModalProps> = ({
@@ -30,6 +31,7 @@ export const Modal: React.FC<ModalProps> = ({
   style,
   zIndex = 10010,
   backdropZIndex = 10000,
+  enableBodyScroll = false,
   ...props
 }) => {
   const _backdropStyles = useMemo(
@@ -66,7 +68,12 @@ export const Modal: React.FC<ModalProps> = ({
   }, [onEscapeDown, handleKeyPress]);
 
   if (!isOpen) {
+    document.body.style.overflow = "auto";
     return null;
+  }
+
+  if (document.body.style.overflow !== "hidden") {
+    document.body.style.overflow = "hidden";
   }
 
   return (
