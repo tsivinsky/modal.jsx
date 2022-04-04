@@ -3,9 +3,6 @@ import React, { useMemo } from "react";
 const backdropStyles: React.CSSProperties = {
   position: "fixed",
   inset: 0,
-  background: "lightgray",
-  opacity: 0.5,
-  cursor: "pointer",
 };
 
 const modalStyles: React.CSSProperties = {
