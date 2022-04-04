@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 
 const backdropStyles: React.CSSProperties = {
   position: "fixed",
@@ -15,6 +15,7 @@ const modalStyles: React.CSSProperties = {
 export type ModalProps = JSX.IntrinsicElements["div"] & {
   isOpen: boolean;
   onClickOutside?: () => void;
+  onEscapeDown?: () => void;
   backdropClassName?: string;
   zIndex?: number;
   backdropZIndex?: number;
@@ -23,6 +24,7 @@ export type ModalProps = JSX.IntrinsicElements["div"] & {
 export const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClickOutside,
+  onEscapeDown,
   backdropClassName,
   children,
   style,
@@ -46,6 +48,22 @@ export const Modal: React.FC<ModalProps> = ({
     }),
     [zIndex]
   );
+
+  const handleKeyPress = (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      onEscapeDown?.();
+    }
+  };
+
+  useEffect(() => {
+    if (!onEscapeDown) return;
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [onEscapeDown, handleKeyPress]);
 
   if (!isOpen) {
     return null;
