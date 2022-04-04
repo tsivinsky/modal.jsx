@@ -9,7 +9,7 @@ const backdropStyles: React.CSSProperties = {
 };
 
 const modalStyles: React.CSSProperties = {
-  position: "absolute",
+  position: "fixed",
   top: "50%",
   left: "50%",
   transform: "translateX(-50%) translateY(-50%)",
