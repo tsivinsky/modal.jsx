@@ -68,12 +68,12 @@ export const Modal: React.FC<ModalProps> = ({
   }, [onEscapeDown, handleKeyPress]);
 
   if (!isOpen) {
-    document.body.style.overflow = "auto";
+    document.body.style.overflowY = "auto";
     return null;
   }
 
-  if (document.body.style.overflow !== "hidden") {
-    document.body.style.overflow = "hidden";
+  if (document.body.style.overflowY !== "hidden") {
+    document.body.style.overflowY = "hidden";
   }
 
   return (
