@@ -24,7 +24,5 @@ esbuild
     sourcemap: true,
     minify: true,
     format: "cjs",
-    platform: "node",
-    target: ["node17"],
   })
   .catch(() => process.exit(1));
