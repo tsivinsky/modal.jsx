@@ -67,6 +67,10 @@ export const Modal: React.FC<ModalProps> = ({
     };
   }, [onEscapeDown, handleKeyPress]);
 
+  if (!isOpen) {
+    return null;
+  }
+
   return (
     <div>
       <div
