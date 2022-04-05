@@ -11,7 +11,7 @@ esbuild
     sourcemap: true,
     minify: true,
     format: "esm",
-    target: ["esnext"],
+    external: ["react"],
   })
   .catch(() => process.exit(1));
 
@@ -24,5 +24,6 @@ esbuild
     sourcemap: true,
     minify: true,
     format: "cjs",
+    external: ["react"],
   })
   .catch(() => process.exit(1));
