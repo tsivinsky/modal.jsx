@@ -60,12 +60,16 @@ export const Modal: React.FC<ModalProps> = ({
   useEffect(() => {
     if (!onEscapeDown) return;
 
-    window.addEventListener("keydown", handleKeyPress);
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyPress);
+    }
 
     return () => {
-      window.removeEventListener("keydown", handleKeyPress);
+      if (isOpen) {
+        window.removeEventListener("keydown", handleKeyPress);
+      }
     };
-  }, [onEscapeDown, handleKeyPress]);
+  }, [isOpen, onEscapeDown, handleKeyPress]);
 
   if (!isOpen) {
     return null;
