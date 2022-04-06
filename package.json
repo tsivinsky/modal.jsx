@@ -1,7 +1,7 @@
 {
   "name": "modal.jsx",
   "description": "Modal component for React",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "type": "module",
   "main": "./dist/modal.cjs",
   "module": "./dist/modal.esm.js",
@@ -19,10 +19,9 @@
   ],
   "scripts": {
     "clean": "rimraf ./dist",
-    "build:dev": "yarn clean && NODE_ENV=development node build.js",
-    "build:prod": "yarn clean && NODE_ENV=production node build.js",
+    "build": "yarn clean && node build.js",
     "gen-types": "tsc --emitDeclarationOnly",
-    "prepublishOnly": "yarn build:prod && yarn gen-types"
+    "prepublishOnly": "yarn build && yarn gen-types"
   },
   "devDependencies": {
     "@types/react": "^17.0.43",
