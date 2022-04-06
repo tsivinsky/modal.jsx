@@ -71,6 +71,23 @@ export const Modal: React.FC<ModalProps> = ({
     };
   }, [isOpen, onEscapeDown, handleKeyPress]);
 
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    if (enableBodyScroll) return;
+
+    let lastBodyOverflow = document.body.style.overflow;
+
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      if (isOpen && !enableBodyScroll) {
+        document.body.style.overflow = lastBodyOverflow;
+      }
+    };
+  }, [isOpen, enableBodyScroll]);
+
   if (!isOpen) {
     return null;
   }
