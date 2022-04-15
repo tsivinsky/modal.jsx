@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useLayoutEffect, useMemo } from "react";
 
 const backdropStyles: React.CSSProperties = {
   position: "fixed",
@@ -71,7 +71,7 @@ export const Modal: React.FC<ModalProps> = ({
     };
   }, [isOpen, onEscapeDown, handleKeyPress]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (typeof document === "undefined") return;
     if (enableBodyScroll) return;
 
