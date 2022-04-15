@@ -8,7 +8,7 @@ esbuild
     sourcemap: true,
     minify: true,
     format: "esm",
-    external: ["react"],
+    external: ["react", "react-dom"],
   })
   .catch(() => process.exit(1));
 
@@ -20,6 +20,6 @@ esbuild
     sourcemap: true,
     minify: true,
     format: "cjs",
-    external: ["react"],
+    external: ["react", "react-dom"],
   })
   .catch(() => process.exit(1));
