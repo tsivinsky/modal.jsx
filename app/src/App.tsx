@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Modal } from "../../src";
 
 import "./App.css";
@@ -9,10 +9,14 @@ export default function App() {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
+  const modalRoot = useRef<HTMLDivElement>(null);
+
   return (
     <div className="root">
       <h1>app w/ modal.jsx</h1>
       <button onClick={openModal}>open modal</button>
+
+      <div ref={modalRoot} />
 
       <Modal
         className="modal"
@@ -20,6 +24,7 @@ export default function App() {
         isOpen={isOpen}
         onEscapeDown={closeModal}
         onClickOutside={closeModal}
+        container={modalRoot.current}
       >
         <h2>modal.jsx</h2>
         <p>just a sample text</p>
