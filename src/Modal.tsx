@@ -1,4 +1,5 @@
 import React, { useEffect, useLayoutEffect, useMemo } from "react";
+import ReactDOM from "react-dom";
 
 const backdropStyles: React.CSSProperties = {
   position: "fixed",
@@ -20,6 +21,7 @@ export type ModalProps = JSX.IntrinsicElements["div"] & {
   zIndex?: number;
   backdropZIndex?: number;
   enableBodyScroll?: boolean;
+  container?: HTMLElement | null;
 };
 
 export const Modal: React.FC<ModalProps> = ({
@@ -32,6 +34,7 @@ export const Modal: React.FC<ModalProps> = ({
   zIndex = 10010,
   backdropZIndex = 10000,
   enableBodyScroll = false,
+  container,
   ...props
 }) => {
   const _backdropStyles = useMemo(
@@ -88,11 +91,11 @@ export const Modal: React.FC<ModalProps> = ({
     };
   }, [isOpen, enableBodyScroll]);
 
-  if (!isOpen) {
+  if (!isOpen || typeof document === "undefined") {
     return null;
   }
 
-  return (
+  return ReactDOM.createPortal(
     <div>
       <div
         style={_backdropStyles}
@@ -102,6 +105,7 @@ export const Modal: React.FC<ModalProps> = ({
       <div style={_modalStyles} {...props}>
         {children}
       </div>
-    </div>
+    </div>,
+    container || document.body
   );
 };
