@@ -57,6 +57,7 @@ export const Modal: React.FC<ModalProps> = ({
   const handleKeyPress = (e: KeyboardEvent) => {
     if (e.key === "Escape") {
       onEscapeDown?.();
+      e.stopPropagation();
     }
   };
 
